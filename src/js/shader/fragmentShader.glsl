@@ -18,11 +18,12 @@ void main() {
   //   vUv.y * ratio.y + (1.0 - ratio.y) * 0.5
   // );
   // vec3 color = texture2D(uTex, uv).rgb;
-  vec3 color = texture2D(uTex, uv + vDistortion).rgb;
-  // color.r += vDistortion;
-
-  // vec3 RED = vec3(0.831, 0.247, 0.552);
-  // vec3 BLUE = vec3(0.007, 0.313, 0.772);
+  // vec3 color = texture2D(uTex, uv + vDistortion).rgb;
+  
+  float r = texture2D(uTex, uv).r;
+  float g = texture2D(uTex, uv + vDistortion).g;
+  float b = texture2D(uTex, uv + vDistortion).b;
+  vec3 color = vec3(r, g, b);
 
   // vec3 color = mix(RED, BLUE, 0.5);
   gl_FragColor = vec4(color, 1.0);
