@@ -23,6 +23,9 @@ export default class Figure {
       uTex: {
         value: this.texture
       },
+      uProg: {
+        value: 0.0
+      }
       // uResolution: {
       //   value: new THREE.Vector2(this.viewport.width, this.viewport.height)
       // },
@@ -37,10 +40,13 @@ export default class Figure {
 
 		this.createMesh()
 
-    this.mouse = new THREE.Vector2(0, 0)
-    window.addEventListener('mousemove', ev => {
-        this.onMouseMove(ev)
-    })
+    // this.mouse = new THREE.Vector2(0, 0)
+    // window.addEventListener('mousemove', ev => {
+    //     this.onMouseMove(ev)
+    // })
+
+    this.onMouseEnter();
+    this.onMouseLeave();
 	}
 
   getSizes() {
@@ -94,6 +100,23 @@ export default class Figure {
     //     x: -this.mouse.y * 0.2,
     //     y: this.mouse.x * (Math.PI / 8)
     // })
+  }
+
+  onMouseEnter() {
+    this.$image.addEventListener('mouseenter',()=>{
+      gsap.to(this.uniforms.uProg, {
+        duration: 0.5,
+        value: 1.0,
+      })
+    })
+  }
+  onMouseLeave() {
+    this.$image.addEventListener('mouseleave',()=>{
+      gsap.to(this.uniforms.uProg, {
+        duration: 0.8,
+        value: 0.0,
+      })
+    })
   }
 
   update() {
