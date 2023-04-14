@@ -1,6 +1,8 @@
 varying vec2 vUv;
-// uniform float uTime;
+varying float vDistortion;
+uniform float uTime;
 uniform sampler2D uTex;
+
 // uniform vec2 uResolution;
 // uniform vec2 uTexResolution;
 
@@ -15,7 +17,9 @@ void main() {
   //   vUv.x * ratio.x + (1.0 - ratio.x) * 0.5,
   //   vUv.y * ratio.y + (1.0 - ratio.y) * 0.5
   // );
-  vec3 color = texture2D(uTex, uv).rgb;
+  // vec3 color = texture2D(uTex, uv).rgb;
+  vec3 color = texture2D(uTex, uv + vDistortion).rgb;
+  // color.r += vDistortion;
 
   // vec3 RED = vec3(0.831, 0.247, 0.552);
   // vec3 BLUE = vec3(0.007, 0.313, 0.772);
