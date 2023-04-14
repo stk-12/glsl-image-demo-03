@@ -1,7 +1,7 @@
 import '../css/style.scss'
 import * as THREE from "three";
-import vertexSource from "./shader/vertexShader.glsl";
-import fragmentSource from "./shader/fragmentShader.glsl";
+// import vertexSource from "./shader/vertexShader.glsl";
+// import fragmentSource from "./shader/fragmentShader.glsl";
 import Figure from './figure';
 
 // import img from '../images/image.jpg';
@@ -43,7 +43,7 @@ class Main {
     //   },
     // };
 
-    this.clock = new THREE.Clock();
+    // this.clock = new THREE.Clock();
 
     this.init();
 
@@ -111,8 +111,8 @@ class Main {
   }
 
   _update() {
-    const elapsedTime = this.clock.getElapsedTime();
-    // this.uniforms.uTime.value = elapsedTime * 0.03;
+    // const elapsedTime = this.clock.getElapsedTime();
+    // // this.uniforms.uTime.value = elapsedTime * 0.03;
 
     for(const img of this.imgPlaneArray) {
       img.update();

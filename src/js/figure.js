@@ -31,6 +31,8 @@ export default class Figure {
       // },
     };
 
+    this.clock = new THREE.Clock();
+
 		this.getSizes()
 
 		this.createMesh()
@@ -56,7 +58,7 @@ export default class Figure {
     const loader = new THREE.TextureLoader();
     this.uniforms.uTex.value = loader.load(this.$image.src);
 
-		this.geometry = new THREE.PlaneBufferGeometry(1, 1, 1, 1)
+		this.geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
 		// this.material = new THREE.MeshBasicMaterial({
 		// 	map: this.image
 		// })
@@ -65,6 +67,7 @@ export default class Figure {
       vertexShader: vertexSource,
       fragmentShader: fragmentSource,
       // side: THREE.DoubleSide
+      // wireframe: true,
     });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material)
@@ -82,18 +85,21 @@ export default class Figure {
   }
 
   onMouseMove(event) {
-    gsap.to(this.mouse, 0.5, {
-        x: (event.clientX / window.innerWidth) * 2 - 1,
-        y: -(event.clientY / window.innerHeight) * 2 + 1
-    })
+    // gsap.to(this.mouse, 0.5, {
+    //     x: (event.clientX / window.innerWidth) * 2 - 1,
+    //     y: -(event.clientY / window.innerHeight) * 2 + 1
+    // })
 
-    gsap.to(this.mesh.rotation, 0.5, {
-        x: -this.mouse.y * 0.2,
-        y: this.mouse.x * (Math.PI / 8)
-    })
+    // gsap.to(this.mesh.rotation, 0.5, {
+    //     x: -this.mouse.y * 0.2,
+    //     y: this.mouse.x * (Math.PI / 8)
+    // })
   }
 
   update() {
+    const elapsedTime = this.clock.getElapsedTime();
+    this.uniforms.uTime.value = elapsedTime * 0.03;
+
     this.getSizes();
     this.setParams();
     // console.log('update');
