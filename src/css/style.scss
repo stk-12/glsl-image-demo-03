@@ -1,0 +1,32 @@
+:root {
+}
+
+body {
+  // overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.container {
+  padding: 20vh 0;
+}
+
+.list {
+  li {
+    text-align: center;
+    margin: 10vh 0 0;
+  }
+  img {
+    width: 50vw;
+  }
+}
